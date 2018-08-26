@@ -9,3 +9,23 @@
         </div>
     </div>
 </template>
+
+<style>
+#home{
+    background: url('../assets/pizza-planet.jpg') no-repeat center center;
+    background-size: cover;
+    height: 500px;
+    padding: 10%;
+}
+h1, h2{
+    margin: 6%;
+}
+.background{
+    background: #eeeeee;
+    opacity: 0.8;
+    max-width: 60%;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+</style>
+
