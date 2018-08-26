@@ -5,7 +5,8 @@
         </div>
         <div class="container">
             <!-- <home></home> -->
-            <pp-menu></pp-menu>
+            <!-- <pp-menu></pp-menu> -->
+            <admin></admin>
         </div>
         <div class="container">
             <pp-footer></pp-footer>
@@ -18,11 +19,13 @@ import Home from './components/Home'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import Menu from './components/Menu'
+import Admin from './components/admin/Admin'
 export default {
     name: 'app',
     components: {
         ppHeader: Header,
         Home,
+        Admin,
         ppFooter: Footer,
         ppMenu: Menu
     }
