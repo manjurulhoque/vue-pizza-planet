@@ -56,15 +56,22 @@
                 </table>
             </div>
         </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <login></login>
+            </div>
+        </div>
     </section>
 </template>
 
 <script>
 import NewPizza from './NewPizza'
-
+import Login from '../Login';
 export default {
     components: {
-        NewPizza
+        NewPizza,
+        Login
     }
 }
 </script>

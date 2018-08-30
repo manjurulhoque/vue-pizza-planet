@@ -1,0 +1,58 @@
+<template>
+    <div class="row">
+        <div>
+            <div>
+                <p>Please login to continue</p>
+                <p>Logged in as: <br> currentUser</p>
+            </div>
+            <form>
+                <div v-if="hasError">
+                    <p class="text-danger">
+                        {{ errorMessage }}
+                    </p>  
+                </div>
+                <div class="form-group">
+                    <label>Email address</label>
+                    <input type="email" v-model="email" class="form-control" id="email" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" v-model="password" class="form-control" id="password" placeholder="Enter password">
+                </div>
+                <button type="button" class="btn btn-primary" @click.prevent="signIn">Sign in</button>
+                <button type="button" class="btn btn-danger" @click.prevent="signOut">Sign out</button>
+            </form>
+        </div>
+  </div>
+</template>
+
+<script>
+import Firebase from 'firebase';
+
+export default {
+    data() {
+        return{
+            email: '',
+            password: '',
+            errorMessage: '',
+            hasError: false
+        }
+    },
+    methods: {
+        signIn() {
+            Firebase.auth().signInAndRetrieveDataWithEmailAndPassword(this.email, this.password)
+                    .then((res) => {
+                        console.log(res);
+                    }).catch(err => {
+                        this.errorMessage = err.message;
+                        this.hasError = true;
+                    });
+        },
+        signOut() {
+            Firebase.auth().signOut().then(() => alert("Signed out"))
+                    .catch(err => console.log(err));
+        }
+    }
+}
+</script>
+
