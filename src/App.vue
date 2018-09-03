@@ -7,6 +7,16 @@
             <router-view></router-view>
         </div>
         <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <router-view name="delivery"></router-view>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <router-view name="history"></router-view>
+                </div>
+            </div>
+        </div>
+        <div class="container">
             <pp-footer></pp-footer>
         </div>
     </div>

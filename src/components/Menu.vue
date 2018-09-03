@@ -9,7 +9,7 @@
                         <th>Add to basket</th>
                     </tr>
                 </thead>
-                <tbody v-for="(item, index) in MenuItems" :key="index">
+                <tbody v-for="(item, index) in getMenuItems" :key="index">
                     <tr>
                         <td><strong>{{ item.name }}</strong></td>
                     </tr>
@@ -63,19 +63,7 @@ export default {
     data() {
         return {
             basket: [],
-            MenuItems: [
-                {
-                    'name': 'Pepperoni',
-                    'description': 'A delicious tomato based pizza topped with mozzarella and pepperoni',
-                    'options': [{
-                        'size': 9,
-                        'price': 7.95
-                    }, {
-                        'size': 12,
-                        'price': 12.95
-                    }]
-                }
-            ]
+            
         }
     },
     computed: {
@@ -86,6 +74,10 @@ export default {
             totalCost += individualItem.quantity * individualItem.price;
             }
             return totalCost
+        },
+        getMenuItems() {
+            //return this.$store.state.menuItems;
+            return this.$store.getters.getMenuItems;
         }
     },
     methods: {

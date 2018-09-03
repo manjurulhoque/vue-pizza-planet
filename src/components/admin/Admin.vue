@@ -14,8 +14,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Name</td>
+                    <tr v-for="(item, index) in getMenuItems" :key="index">
+                        <td>{{ item.name }}</td>
                         <td>
                             <button class="btn btn-outline-danger btn-sm">x</button>
                         </td>
@@ -42,7 +42,7 @@
                     <tbody>
 
                         <div class="order-number">
-                            <strong><em>Order Number: 1</em></strong>
+                            <strong><em>Order Number: {{ getNumberOfOrders }}</em></strong>
                             <button class="btn btn-outline-danger btn-sm">x</button>
                         </div>
 
@@ -72,7 +72,25 @@ export default {
     components: {
         NewPizza,
         Login
+    },
+    computed: {
+        getMenuItems() {
+            return this.$store.state.menuItems;
+        },
+        getNumberOfOrders() {
+            return this.$store.getters.numberOfOrders;
+        }
+    },
+    beforeRouteLeave: (to, from, next) => {
+        if(confirm("Did you log out?") == true){
+            next();
+        }else{
+            next(false);
+        }
     }
+    // beforeRouteEnter: (to, from, next) => {
+    //     next();
+    // }
 }
 </script>
 
