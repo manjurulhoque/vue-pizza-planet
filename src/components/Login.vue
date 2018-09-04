@@ -3,7 +3,7 @@
         <div>
             <div>
                 <p>Please login to continue</p>
-                <p>Logged in as: <br> {{ currentUser }}</p>
+                <p v-if="currentUser">Logged in as: <br> {{ currentUser.email }}</p>
             </div>
             <form>
                 <div v-if="hasError">
