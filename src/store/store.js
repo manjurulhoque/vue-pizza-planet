@@ -29,10 +29,27 @@ export const store = new Vuex.Store({
                 }]
             }
         ],
-        orders: []
+        orders: [],
+        currentUser: null
     },
     getters: {
         getMenuItems: state => state.menuItems,
-        numberOfOrders: state => state.orders.length
+        numberOfOrders: state => state.orders.length,
+        getCurrentUser: state => state.currentUser
+    },
+    mutations: {
+        addOrder: (state, orders) => state.orders.push(orders),
+        userStatus: (state, user) => {
+            if(user) {
+                state.currentUser = user;
+            }else{
+                state.currentUser = null
+            }
+        }
+    },
+    actions: {
+        setUser(context, user) {
+            context.commit('userStatus', user)
+        }
     }
 })

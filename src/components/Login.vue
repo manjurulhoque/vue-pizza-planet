@@ -3,7 +3,7 @@
         <div>
             <div>
                 <p>Please login to continue</p>
-                <p>Logged in as: <br> currentUser</p>
+                <p>Logged in as: <br> {{ currentUser }}</p>
             </div>
             <form>
                 <div v-if="hasError">
@@ -28,6 +28,15 @@
 
 <script>
 import Firebase from 'firebase';
+import {store} from '../store/store.js';
+
+Firebase.auth().onAuthStateChanged((user) => {
+    if(user){
+        store.dispatch('setUser', user);
+    }else{
+        store.dispatch('setUser', null);
+    }
+})
 
 export default {
     data() {
@@ -36,6 +45,11 @@ export default {
             password: '',
             errorMessage: '',
             hasError: false
+        }
+    },
+    computed: {
+        currentUser() {
+            return this.$store.getters.getCurrentUser;
         }
     },
     methods: {

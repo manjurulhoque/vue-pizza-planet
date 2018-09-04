@@ -44,26 +44,28 @@
                                     @click="increaseQuantity(item)">+</button>
                         </td>
                         <td>{{ item.name}} {{ item.size }}</td>
-                        <td>{{ item.price * item.quantity | currency }}</td>
+                        <td>{{ item.price * item.quantity  }}</td>
                         </tr>
                     </tbody>
                 </table>
-                <p>Order total: {{ total | currency }}</p>
+                <p>Order total: {{ total  }}</p>
                 <button class="btn btn-success btn-block" @click="addNewOrder">Place Order</button>
             </div>
             <div v-else>
-                Your basket is empty!
+                {{ basketText }}
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
     data() {
         return {
             basket: [],
-            
+            basketText: "Your basket is empty"
         }
     },
     computed: {
@@ -75,10 +77,13 @@ export default {
             }
             return totalCost
         },
-        getMenuItems() {
-            //return this.$store.state.menuItems;
-            return this.$store.getters.getMenuItems;
-        }
+        ...mapGetters([
+            'getMenuItems'
+        ])
+        // getMenuItems() {
+        //     //return this.$store.state.menuItems;
+        //     return this.$store.getters.getMenuItems;
+        // }
     },
     methods: {
         addToBasket(item, option) {
@@ -90,7 +95,9 @@ export default {
             });
         },
         addNewOrder() {
-
+            this.$state.commit('addOrder', this.basket);
+            this.basket = [];
+            this.basketText = "Thank you, your order has been placed.";
         },
         removeFromBasket(item){
             this.basket.splice(this.basket.indexOf(item), 1);

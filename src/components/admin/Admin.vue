@@ -42,7 +42,7 @@
                     <tbody>
 
                         <div class="order-number">
-                            <strong><em>Order Number: {{ getNumberOfOrders }}</em></strong>
+                            <strong><em>Order Number: {{ numberOfOrders }}</em></strong>
                             <button class="btn btn-outline-danger btn-sm">x</button>
                         </div>
 
@@ -68,18 +68,24 @@
 <script>
 import NewPizza from './NewPizza'
 import Login from '../Login';
+import { mapGetters } from 'vuex';
+
 export default {
     components: {
         NewPizza,
         Login
     },
     computed: {
-        getMenuItems() {
-            return this.$store.state.menuItems;
-        },
-        getNumberOfOrders() {
-            return this.$store.getters.numberOfOrders;
-        }
+        // getMenuItems() {
+        //     return this.$store.state.menuItems;
+        // },
+        // getNumberOfOrders() {
+        //     return this.$store.getters.numberOfOrders;
+        // }
+        ...mapGetters([
+            'getMenuItems',
+            'numberOfOrders'
+        ])
     },
     beforeRouteLeave: (to, from, next) => {
         if(confirm("Did you log out?") == true){
