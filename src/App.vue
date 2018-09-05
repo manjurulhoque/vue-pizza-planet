@@ -23,13 +23,19 @@
 </template>
 
 <script>
-import Footer from './components/Footer'
-import Header from './components/Header'
+import Footer from './components/Footer';
+import Header from './components/Header';
+import { dbMenuRef, dbOrdersRef } from '../firebase.js';
+
 export default {
     name: 'app',
     components: {
         ppHeader: Header,
         ppFooter: Footer,
+    },
+    created() {
+        this.$store.dispatch('setMenuRef', dbMenuRef);
+        this.$store.dispatch('setOrdersRef', dbOrdersRef);
     }
 }
 </script>
@@ -44,3 +50,4 @@ export default {
     margin-top: 60px;
 }
 </style>
+

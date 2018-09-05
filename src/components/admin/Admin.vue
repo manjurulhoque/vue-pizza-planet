@@ -14,7 +14,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(item, index) in getMenuItems" :key="index">
+                    <tr v-for="item in getMenuItems" :key="item['.key']">
                         <td>{{ item.name }}</td>
                         <td>
                             <button class="btn btn-outline-danger btn-sm">x</button>
@@ -28,7 +28,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <h3>Current orders: 1</h3>
-                <table class="table table-sm">
+                <table class="table table-sm" v-for="(orders, index) in getOrders" :key="orders['.key']">
 
                     <thead class="thead-default">
                         <tr>
@@ -42,15 +42,15 @@
                     <tbody>
 
                         <div class="order-number">
-                            <strong><em>Order Number: {{ numberOfOrders }}</em></strong>
+                            <strong><em>Order Number: {{ index+1 }}</em></strong>
                             <button class="btn btn-outline-danger btn-sm">x</button>
                         </div>
 
-                        <tr>
-                            <td>name</td>
-                            <td>size</td>
-                            <td>quantity</td>
-                            <td>price</td>
+                        <tr v-for="order in orders['.value']">
+                            <td>{{ order.name }}</td>
+                            <td>{{ order.size }}</td>
+                            <td>{{ order.quantity }}</td>
+                            <td>{{ order.price }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -84,7 +84,8 @@ export default {
         // }
         ...mapGetters([
             'getMenuItems',
-            'numberOfOrders'
+            'numberOfOrders',
+            'getOrders'
         ])
     },
     beforeRouteLeave: (to, from, next) => {

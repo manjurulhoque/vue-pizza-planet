@@ -60,6 +60,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import { dbOrdersRef } from '../../firebase.js';
 
 export default {
     data() {
@@ -95,7 +96,8 @@ export default {
             });
         },
         addNewOrder() {
-            this.$state.commit('addOrder', this.basket);
+            dbOrdersRef.push(this.basket);
+            //this.$state.commit('addOrder', this.basket);
             this.basket = [];
             this.basketText = "Thank you, your order has been placed.";
         },

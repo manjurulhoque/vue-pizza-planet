@@ -17,8 +17,8 @@ const getters = {
 }
 
 const actions = {
-    setUser ({ commit }, user) {
-        commit('userStatus', user)
+    setUser (context, user) {
+        context.commit('userStatus', user)
     }
 }
 

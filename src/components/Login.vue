@@ -56,15 +56,14 @@ export default {
         signIn() {
             Firebase.auth().signInAndRetrieveDataWithEmailAndPassword(this.email, this.password)
                     .then((res) => {
-                        console.log(res);
+                        
                     }).catch(err => {
                         this.errorMessage = err.message;
                         this.hasError = true;
                     });
         },
         signOut() {
-            Firebase.auth().signOut().then(() => alert("Signed out"))
-                    .catch(err => console.log(err));
+            Firebase.auth().signOut().then(() => alert("Signed out"));
         }
     }
 }
