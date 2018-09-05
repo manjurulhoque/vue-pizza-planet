@@ -54,7 +54,7 @@ export default {
     },
     methods: {
         signIn() {
-            Firebase.auth().signInAndRetrieveDataWithEmailAndPassword(this.email, this.password)
+            Firebase.auth().signInWithEmailAndPassword(this.email, this.password)
                     .then((res) => {
                         
                     }).catch(err => {
